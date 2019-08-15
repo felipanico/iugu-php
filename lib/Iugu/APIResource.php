@@ -56,8 +56,14 @@ class APIResource extends Iugu_Object
                 $path .= '/' . $object['id'];
             elseif (isset($object['account_id']))
                 $path .= '/' . $object['account_id'];
+
             $path .= '/' . $object['action'];
+
+            if (isset($object['use_id']) && $object['use_id'] === false) {
+                $path = '/' . $object['action'];
+            }
         }
+
         return Iugu::getBaseURI() . $uri_path . '/' . self::objectBaseURI() . $path;
     }
 
